@@ -24,12 +24,14 @@ state of a patient must be died or alive - we adjust that as well
   
 # Question 1 - Is dying independent of sex
 
-
+$H_0$: Covid 19 deaths in Korea, from jan-may 2020 are unrelated to sex 
+$H_A$: Covid deaths in Korea, from Jan-may 2020 are related to sex
 
 
 Table of patients:
 ```{r}
-
+kRdata$Sex = as.factor(kRdata$Sex)
+kRdata$result = as.factor(kRdata$result)
 # cross tabulation, patient state by gender
 
 with(kRdata, table(Sex, result))
@@ -38,8 +40,22 @@ with(kRdata, table(Sex, result))
 
 ## We create two bar charts - one based on frequency and the other on percent, use ggplot commands to do this
 
-`
+```{r}
+dd2 <- kRdata %>% group_by(result,Sex) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=result,y=count,fill=Sex))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=result,y=prcnt*100,fill=Sex)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+From the graph it shows that among the people who died majority were men and out of the people who lived most were women. This shows that there is a connect between the result and sex.
   
 
 
