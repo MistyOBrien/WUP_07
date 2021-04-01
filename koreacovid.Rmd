@@ -74,8 +74,12 @@ According to the table males died at about twice rate more then compared to fema
 
 ## Inferential results 
 
-
-
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+If the null hypothesis were true than we would expect more female deaths and fewer male deaths. But given that p-value of the Pearson's Chi-squared test is 0.001 which shows that we reject the null hypothesis. From the Fishers test we are given the probability of a male dying is 2.3 which tells us that a male is 2.3 times more likely to die if you have Covid-19 than if you were female. 
 
 ## Conclusions
-
+From the data given in this write up shows we eject null hypothesis. From the fishers test the conference interval does not contain one this shows that the death rates of covid and sex is not equality likely to die from covid in Korea. 
