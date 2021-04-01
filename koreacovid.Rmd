@@ -65,6 +65,12 @@ From the graph it shows that among the people who died majority were men and out
   
 ## Numerical results
 
+```{r}
+table1 <- xtabs(~result + Sex, data=kRdata)
+rowPerc(table1)
+colPerc(table1)
+```
+According to the table males died at about twice rate more then compared to females deaths
 
 ## Inferential results 
 
